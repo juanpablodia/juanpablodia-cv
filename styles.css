@@ -1,0 +1,604 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    --border-radius: 100px; /* Radio del borde */
+    --blue: #1c47ff; /* Color azul */
+    --pink: #d6a3fb; /* Color rosa */
+    --green: #d0ff94; /* Color verde */
+    --grey: #e5e5e5; /* Color gris */
+    --gutter: 3.125vw; /* Espacio entre elementos */
+
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el relleno por defecto */
+    background-color: black; /* Color de fondo */
+    color: white; /* Color del texto */
+    font-size: 30px; /* Tamaño de fuente */
+    font-family: 'IBM Plex Sans Condensed', sans-serif; /* Tipo de fuente */
+}
+
+h1 {
+    color: black; /* Color inicial del texto */
+    font-family: 'IBM Plex Sans Condensed', sans-serif; /* Fuente inicial */
+    transition: color 0.3s ease, font-family 0.3s ease; /* Transición suave */
+    font-size: 50px; /* Tamaño de fuente */
+    margin: 20px; /* Margen del texto */
+}
+
+h1:hover {
+    color: white; /* Color del texto al pasar el cursor */ 
+    font-family: 'Space Mono', monospace; /* Fuente alternativa */
+}
+
+h2 {
+    font-size: 50px; /* Tamaño de fuente */
+    margin: 10px; /* Margen del texto */
+}
+
+a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+section {
+    position: relative; /* Posición relativa */
+    display: flex; /* Para que los elementos se alineen en línea */
+    width: 100%; /* Ancho de la sección */
+    height: calc(100vh - 50px); /* Altura de la sección */
+    top: 200px; /* Distancia superior */
+    z-index: 2; /* Asegura que la sección esté sobre el contenido */
+}
+
+section.sticky {
+    position: sticky;
+    margin-top: 100px;
+}
+
+section.full-screen {
+    height: 100vh;
+    top: 0;
+    margin-top: 0;
+    z-index: 3;
+}
+
+/* Estilos para la navegación */
+
+nav {
+    position: fixed; /* Posición fija */
+    top: 0; /* Distancia superior */
+    left: 0; /* Distancia izquierda */
+    z-index: 1000; /* Cambia a posición estática */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    height: auto; /* Ajusta la altura automáticamente */
+    top: 0; /* Alinea a la parte superior */
+    left: 0; /* Alinea a la izquierda */
+    font-size: 50px; /* Tamaño de fuente */
+    z-index: 1000; /* Asegura que la barra esté sobre el contenido */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    padding: 10px 0; /* Añade padding vertical para espacio */
+    border-radius: 0; /* Elimina los bordes redondeados para un diseño más limpio */
+    display: flex; /* Asegura que los elementos se alineen en fila */
+    justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+nav ul {
+    display: flex; /* Asegura que los elementos de la lista se alineen en fila */
+    flex-direction: row; /* Mantiene la dirección en fila */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    justify-content: space-evenly; /* Distribuye los elementos uniformemente */
+    padding: 0; /* Elimina el padding para un mejor ajuste */
+    list-style: none; /* Elimina los marcadores de la lista */
+}
+
+nav ul li {
+    margin: 0 10px; /* Añade margen horizontal entre elementos */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a {
+    color: #ffffff;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    text-decoration: none;
+}
+
+nav ul li:hover {
+    transform: translateY(-5px);
+    color: #ff6347;
+}
+
+
+/* Estilos para el contenido */
+
+section.Sobremi .empty {
+    flex-basis: 37.5vw; /* Ancho del elemento */
+    background: #e5e5e5; /* Color de fondo */
+    border-radius: 100px; /* Borde redondeado */
+    padding: var(--gutter); /* Relleno interno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    min-height: 88vh;
+    background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 1500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-top: auto;
+}
+
+.interactive-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-container:hover {
+    transform: scale(1.05) rotate(1deg);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.shape {
+    position: absolute;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shape-1 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #ff3366, #ff6b6b);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    top: 50px;
+    left: 50px;
+    mix-blend-mode: screen;
+    animation: float1 4s infinite ease-in-out;
+}
+
+.shape-2 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    clip-path: circle(50% at 50% 50%);
+    bottom: 50px;
+    right: 50px;
+    mix-blend-mode: screen;
+    animation: float2 5s infinite ease-in-out;
+}
+
+.shape-3 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(225deg, #ffd86f, #fc6262);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 100px;
+    right: 80px;
+    mix-blend-mode: screen;
+    animation: float3 6s infinite ease-in-out;
+}
+
+.shape-4 {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(315deg, #a8edea, #fed6e3);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    bottom: 80px;
+    left: 80px;
+    mix-blend-mode: screen;
+    animation: float4 7s infinite ease-in-out;
+}
+
+.shape-5 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #bf0fff, #cbff49);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    top: 30px;
+    right: 30px;
+    mix-blend-mode: screen;
+    animation: float5 5.5s infinite ease-in-out;
+}
+
+.shape-6 {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #00ff87, #60efff);
+    clip-path: circle(50% at 50% 50%);
+    bottom: 30px;
+    left: 30px;
+    mix-blend-mode: screen;
+    animation: float6 6.5s infinite ease-in-out;
+}
+
+.interactive-container:hover .shape {
+    transform: scale(1.2) rotate(15deg);
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.interactive-container:has(.shape:hover) .shape:not(:hover) {
+    transform: scale(0.8) rotate(-15deg);
+    opacity: 0.6;
+    filter: blur(2px);
+}
+
+.glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.interactive-container:hover .glow {
+    opacity: 1;
+}
+
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(
+            circle at 20% 30%,
+            white 1px,
+            transparent 1px
+        ),
+        radial-gradient(circle at 80% 20%, white 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, white 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, white 1px, transparent 1px);
+    background-size: 100% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: twinkle 2s infinite;
+}
+
+.interactive-container:hover .sparkles {
+    opacity: 0.5;
+}
+
+@keyframes float1 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(10px, -10px) rotate(5deg);
+    }
+}
+
+@keyframes float2 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-15px, 5px) rotate(-8deg);
+    }
+}
+
+@keyframes float3 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(8px, 12px) rotate(12deg);
+    }
+}
+
+@keyframes float4 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-12px, -8px) rotate(-15deg);
+    }
+}
+
+@keyframes float5 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(15px, -5px) rotate(10deg);
+    }
+}
+
+@keyframes float6 {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-8px, 12px) rotate(-12deg);
+    }
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+section.Sobremi article {
+    flex: 1; /* Toma todo el espacio disponible */
+    display: flex; /* Para que los elementos se alineen en línea */
+    flex-direction: column; /* Para que los elementos se alineen en columna */
+    overflow: hidden; /* Evita el desbordamiento */
+}
+
+section.Sobremi article .title {
+    flex: 0 1 auto; /* No crece, pero se ajusta al contenido */
+    display: flex; /* Para que los elementos se alineen en línea */
+    align-items: flex-end; /* Alinea los elementos al final */
+    background: #1c47ff; /* Color de fondo */
+    border-radius: 100px; /* Borde redondeado */
+    padding: 2vw; /* Relleno interno ajustado */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye el padding y el border en el tamaño total */
+}
+
+section.Sobremi article .description {
+    flex: 1 1 auto; /* Permite que el contenedor se ajuste al contenido */
+    background: #eb0b0b; /* Color de fondo */
+    border-radius: 100px; /* Borde redondeado */
+    padding: 2vw; /* Relleno interno ajustado */
+    color: #000000; /* Color del texto */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye el padding y el border en el tamaño total */
+    overflow: hidden; /* Evita el desbordamiento */
+    text-align: justify;
+}
+
+
+/* service section */
+
+section.Servicios article {
+    display: flex; /* Para que los elementos se alineen en línea */
+    width: 100%; /* Ancho del artículo */
+}
+
+section.Servicios figure {
+    display: flex; /* Para que los elementos se alineen en línea */
+    align-items: center; /* Alinea los elementos al centro */
+    justify-content: center; /* Alinea los elementos al centro */
+    flex-basis: 40.25vw; /* Ancho del elemento */
+    margin: 0; /* Elimina el margen por defecto */
+    background: var(--green); /* Color de fondo */
+    border-radius: var(--border-radius); /* Borde redondeado */
+}
+
+section.Servicios figure img {
+    width: 50%; /* Ancho de la imagen */
+}
+
+section.Servicios .text {
+    display: flexbox; /* Para que los elementos se alineen en línea */
+    flex-direction: column; /* Para que los elementos se alineen en columna */
+    justify-content: center; /* Alinea los elementos al centro */
+    flex: 1; /* Toma todo el espacio disponible */
+    background: #1f1c1a; /* Color de fondo */
+    padding: var(--gutter); /* Relleno interno */
+    border-radius: var(--border-radius); /* Borde redondeado */
+    top: 100px; /* Distancia superior */
+    z-index: 2; /* Elimina la posición superior */  
+}
+
+section.Servicios .text a {
+    font-family: 'Space Mono', monospace;
+}
+
+/* Sección de servicios animados */
+/* Esta sección queda por definir ya que se deseo cambiar por modelo de rotación */
+
+/*section.Servicios.Servicios-html figure img {
+    animation-name: float;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);
+} */
+
+/*@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+    }
+}*/
+
+/* Animación para la sección Servicios-HTML */
+
+section.Servicios.Servicios-html figure img {
+    animation-name: rotate-left; /* Nombre de la animación */
+    animation-duration: 10s; /* Duración del ciclo de animación */
+    animation-iteration-count: infinite; /* Repetir infinitamente */
+    animation-timing-function: linear; /* Función de temporización constante */
+}
+
+@keyframes rotate-left {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Animación para la sección Servicios-css */
+
+section.Servicios.Servicios-css figure img {
+    animation-name: rotate-right; /* Nombre de la animación */
+    animation-duration: 10s; /* Duración del ciclo de animación */
+    animation-iteration-count: infinite; /* Repetir infinitamente */
+    animation-timing-function: linear; /* Función de temporización constante */
+}
+
+@keyframes rotate-right {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Animación para la sección Servicios-js */
+
+section.Servicios.Servicios-js figure img {
+    animation-name: move-around; /* Nombre de la animación */
+    animation-duration: 4s; /* Duración del ciclo de animación */
+    animation-iteration-count: infinite; /* Repetir infinitamente */
+    animation-timing-function: linear; /* Función de temporización constante */
+}
+
+@keyframes move-around {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(100px, 0px); /* Mueve a la derecha y hacia abajo */
+    }
+    50% {
+        transform: translate(100px, 20px); /* Mueve hacia abajo */
+    }
+    75% {
+        transform: translate(-200px, 0); /* Mueve a la izquierda */
+    }
+    100% {
+        transform: translate(0, 0); /* Vuelve a la posición original */
+    }
+}
+
+/* Estilos para la sección */
+
+section.Servicios.Servicios-html figure {
+    background: var(--pink); /* Añade tus estilos aquí */
+}
+
+section.Servicios.Servicios-html .text h2,
+section.Servicios.Servicios-html .text a, p {
+    color: var(--green); /* Añade tus estilos aquí */
+}
+
+section.Servicios.Servicios-css figure {
+    background: var(--blue); /* Color de fondo */
+}
+
+section.Servicios.Servicios-css .text h2,
+section.Servicios.Servicios-css .text a {
+    color: var(--blue); /* Color del texto */
+}
+
+section.Servicios.Servicios-js .text h2,
+section.Servicios.Servicios-js .text a {
+    color: #d62c0e; /* Color del texto */
+}
+
+/* sección de contacto */
+
+section.Contacto {
+    align-items: center; /* Alinea los elementos al centro */
+    justify-content: center; /* Alinea los elementos al centro */
+    background: #1f1c1a; /* Color de fondo */
+    border-radius: var(--border-radius); /* Borde redondeado */
+    font-size: 80px; /* Tamaño de fuente */
+    font-weight: bold; /* Grosor de la fuente */
+    border-color: #1c47ff;
+}
+
+section.Contacto a:hover {
+    filter: blur(5px); /* Aplica un desenfoque al pasar el ratón */
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 768px) {
+    html, body {
+        --border-radius: 50px; /* Radio del borde */
+        --gutter: 6.25vw; /* Espacio entre elementos */
+    }
+
+    h1 {
+        font-size: 60px; /* Tamaño de fuente */
+    }
+
+    nav {
+        display: flex; /* Asegura que los elementos se alineen en fila */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        width: 100%; /* Asegura que ocupe todo el ancho disponible */
+        padding: 10px 0; /* Añade padding vertical para espacio */
+    }
+
+    nav ul {
+        display: flex; /* Asegura que los elementos de la lista se alineen en fila */
+        flex-direction: row; /* Mantiene la dirección en fila */
+        width: 100%; /* Asegura que ocupe todo el ancho disponible */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        padding: 0; /* Elimina el padding para un mejor ajuste */
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Añade margen horizontal entre elementos */
+        list-style: none; /* Elimina los marcadores de la lista */
+    }
+
+    section .Servicios article {
+        flex-direction: column; /* Para que los elementos se alineen en columna */
+    }
+
+    section .Servicios figure {
+        flex-basis: 25vh; /* Ancho del elemento */
+    }
+
+    section .Servicios img {
+        width: 20%; /* Relleno interno */
+    }
+
+    section .Contacto a {
+        font-size: 30px; /* Tamaño de fuente */
+        color: #000000; /* Color del texto */
+        font-weight: bold; /* Grosor de la fuente */
+        transition: filter 2s cubic-bezier(.77,.28,.42,.93); /* Transición */
+        will-change: filter; /* Cambio de filtro */
+        transform: rotate(90deg); /* Rotación */
+        font-family: 'IBM Plex Sans Condensed', sans-serif; /* Tipo de fuente */
+    }
+}
