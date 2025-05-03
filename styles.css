@@ -376,7 +376,7 @@ section.Sobremi article .title {
 
 section.Sobremi article .description {
     flex: 1 1 auto; /* Permite que el contenedor se ajuste al contenido */
-    background: #eb0b0b; /* Color de fondo */
+    background: #460beb; /* Color de fondo */
     border-radius: 100px; /* Borde redondeado */
     padding: 2vw; /* Relleno interno ajustado */
     color: #000000; /* Color del texto */
